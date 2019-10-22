@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
   res.send('<h1>Welcome to My Page, HaPpy HAcKiNg</h1>')
 });
 app.use('/user', apiRouter)
+// Favourite video router
 app.use('/movie', favRoute)
 
 // Start server
