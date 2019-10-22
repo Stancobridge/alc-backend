@@ -6,18 +6,25 @@ class User {
     try {
       let user = await Auth().createUserWithEmailAndPassword(email, password);
       let userId = user.user.uid;
-
-      let userProfile = database.ref("users/" + userId).set({
+      database.ref("users/" + userId).set({
         userId,
         fullname
-      })
-      return userProfile;
-
+      });
+      return { success: true };
     } catch (error) {
-
       error = error.message;
-      return { error };
-    
+      throw new Error(JSON.stringify({ error }));
+    }
+  }
+
+  static async login(data) {
+    const { password, email } = data;
+
+    try {
+      let userLogin = Auth().signInWithEmailAndPassword(email, password);
+      return userLogin;
+    } catch (error) {
+      return error;
     }
   }
 }
