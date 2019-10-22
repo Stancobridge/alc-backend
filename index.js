@@ -16,6 +16,6 @@ app.use('/user', apiRouter)
 app.use('/movie', favRoute)
 
 // Start server
-app.listen(process.env.APP_PORT, ()=>{
+app.listen(process.env.PORT || 3000, ()=>{
   console.log('App started running in port', process.env.APP_PORT)
 })
